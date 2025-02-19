@@ -1,19 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
   TextInput,
-  TouchableOpacity,
   FlatList,
   StyleSheet,
   Image,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons"; // Sử dụng Expo Icons
+import { Ionicons } from "@expo/vector-icons"; 
 
 const SearchScreen = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [filteredVehicles, setFilteredVehicles] = useState<{ id: string; name: string; price: string; location: string; image: any; }[]>([]);
 
-  // Dữ liệu giả lập danh sách xe (ảnh cục bộ)
   const vehicles = [
     { id: "1", name: "Car Model 1", price: "$20,000", location: "Da Nang", image: require("../assets/vinfast.png") },
     { id: "2", name: "Car Model 2", price: "$22,500", location: "Da Nang", image: require("../assets/vinfast.png") },
@@ -22,6 +21,13 @@ const SearchScreen = () => {
     { id: "5", name: "Car Model 5", price: "$18,000", location: "Da Nang", image: require("../assets/vinfast.png") },
     { id: "6", name: "Car Model 6", price: "$25,000", location: "Da Nang", image: require("../assets/vinfast.png") },
   ];
+
+  useEffect(() => {
+    const filtered = vehicles.filter(vehicle => 
+      vehicle.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredVehicles(filtered);
+  }, [searchQuery]);
 
   return (
     <View style={styles.container}>
@@ -43,26 +49,30 @@ const SearchScreen = () => {
       </View>
 
       {/* Vehicle List (Grid) */}
-      <FlatList
-        data={vehicles}
-        keyExtractor={(item) => item.id}
-        numColumns={2} 
-        contentContainerStyle={styles.listContainer}
-        renderItem={({ item }) => (
-          <View style={styles.vehicleCard}>
-            <Image 
-              source={typeof item.image === "string" ? { uri: item.image } : item.image}
-              style={styles.vehicleImage} 
-            />
-            <Text style={styles.vehicleName}>{item.name}</Text>
-            <Text style={styles.vehiclePrice}>{item.price}</Text>
-            <View style={styles.locationContainer}>
-              <Ionicons name="location-outline" size={16} color="#555" />
-              <Text style={styles.vehicleLocation}>{item.location}</Text>
+      {filteredVehicles.length === 0 ? (
+        <Text style={styles.noResultsText}>No vehicles found</Text>
+      ) : (
+        <FlatList
+          data={filteredVehicles}
+          keyExtractor={(item) => item.id}
+          numColumns={2}
+          contentContainerStyle={styles.listContainer}
+          renderItem={({ item }) => (
+            <View style={styles.vehicleCard}>
+              <Image 
+                source={typeof item.image === "string" ? { uri: item.image } : item.image}
+                style={styles.vehicleImage} 
+              />
+              <Text style={styles.vehicleName}>{item.name}</Text>
+              <Text style={styles.vehiclePrice}>{item.price}</Text>
+              <View style={styles.locationContainer}>
+                <Ionicons name="location-outline" size={16} color="#555" />
+                <Text style={styles.vehicleLocation}>{item.location}</Text>
+              </View>
             </View>
-          </View>
-        )}
-      />
+          )}
+        />
+      )}
     </View>
   );
 };
@@ -78,7 +88,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#5A9FE3",
     paddingVertical: 15,
     paddingHorizontal: 20,
-    marginTop : 25,
+    marginTop: 25,
   },
   headerTitle: {
     fontSize: 20,
@@ -97,6 +107,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 3,
     elevation: 2,
+    width: "100%",
   },
   searchInput: {
     flex: 1,
@@ -110,13 +121,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   vehicleCard: {
-    width: "48%",  
+    width: "48%",
     backgroundColor: "#c7d9ec",
     borderRadius: 10,
-    margin: 5, 
+    margin: 5,
     alignItems: "center",
     justifyContent: "center",
-    aspectRatio: 1, 
+    aspectRatio: 1,
   },
   vehicleImage: {
     width: "100%",
@@ -146,6 +157,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#555",
     marginLeft: 5,
+  },
+  noResultsText: {
+    textAlign: "center",
+    color: "#444",
+    fontSize: 24,
+    marginTop: 20,
   },
 });
 

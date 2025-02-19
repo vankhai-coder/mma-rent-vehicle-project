@@ -10,6 +10,8 @@ import BookingHistory from './pages/BookingHistory';
 import RegisterOwner from './pages/RegisterOwner';
 import UpdateProfileScreen from './pages/profile';
 import LoginPage from './pages/LoginPage';
+import ManageAccountScreen from './pages/ManageAccountScreen';
+import ManageVehicleScreen from './pages/ManageVehicleScreen';
 
 
 export default function App() {
@@ -31,6 +33,10 @@ export default function App() {
       {/* Duc Hoan :  */}
        {/* <LoginPage /> */}
        {/* <UpdateProfileScreen /> */}
+
+      {/* Son Tung :  */}
+      {/* <ManageAccountScreen />  */}
+      {/* <ManageVehicleScreen /> */}
 
       <StatusBar style="auto" />
     </View>
