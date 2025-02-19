@@ -8,6 +8,8 @@ import SignUpScreen from './pages/SignUpScreen';
 import VehicleDetailScreen from './pages/VehicleDetailScreen';
 import BookingHistory from './pages/BookingHistory';
 import RegisterOwner from './pages/RegisterOwner';
+import UpdateProfileScreen from './pages/profile';
+import LoginPage from './pages/LoginPage';
 
 
 export default function App() {
@@ -27,7 +29,8 @@ export default function App() {
       {/* <RegisterOwner /> */}
 
       {/* Duc Hoan :  */}
-      
+       {/* <LoginPage /> */}
+       {/* <UpdateProfileScreen /> */}
 
       <StatusBar style="auto" />
     </View>
