@@ -145,6 +145,7 @@ const UpdateProfileScreen = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
+    width : '100%' ,
     backgroundColor: '#F8F9FA',
   },
   container: {
