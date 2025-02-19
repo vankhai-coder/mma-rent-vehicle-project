@@ -8,6 +8,8 @@ import SignUpScreen from './pages/SignUpScreen';
 import VehicleDetailScreen from './pages/VehicleDetailScreen';
 import BookingHistory from './pages/BookingHistory';
 import RegisterOwner from './pages/RegisterOwner';
+import ManageAccountScreen from './pages/ManageAccountScreen';
+import ManageVehicleScreen from './pages/ManageVehicleScreen';
 
 
 export default function App() {
@@ -20,7 +22,7 @@ export default function App() {
       {/* Thai Bao :  */}
       {/* <SearchScreen /> */}
       {/* <SignUpScreen /> */}
-      <VehicleDetailScreen />
+      {/* <VehicleDetailScreen /> */}
 
       {/* Phuong  : */}
       {/* <BookingHistory /> */}
@@ -28,6 +30,10 @@ export default function App() {
 
       {/* Duc Hoan :  */}
       
+
+      {/* Son Tung :  */}
+      {/* <ManageAccountScreen />  */}
+      {/* <ManageVehicleScreen /> */}
 
       <StatusBar style="auto" />
     </View>
