@@ -1,6 +1,7 @@
 import React from "react";
 import {
-  View,Text,Image,StyleSheet,} from "react-native";
+  View, Text, Image, StyleSheet, TouchableOpacity
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 const VehicleDetailScreen = () => { 
@@ -19,7 +20,12 @@ const VehicleDetailScreen = () => {
 
       {/* Price & Detail */}
       <View style={styles.infoContainer}>
-        <Text style={styles.priceText}>Xe điện VF8</Text>
+        <View style={styles.priceContainer}>
+          <Text style={styles.priceText}>Xe điện VF8</Text>
+          <TouchableOpacity style={styles.rentButton}>
+            <Text style={styles.rentButtonText}>Rent</Text>
+          </TouchableOpacity>
+        </View>
         <Text style={styles.priceText}>$20,000</Text>
         <Text style={styles.detailText}>
         VinFast VF 8 là mẫu SUV điện thông minh của VinFast, được ra mắt vào năm 2022 với thiết kế hiện đại, công nghệ tiên tiến và hiệu suất mạnh mẽ. Xe thuộc phân khúc D-SUV, hướng đến người dùng yêu thích xe điện với khả năng vận hành bền bỉ và thân thiện môi trường.
@@ -27,75 +33,23 @@ const VehicleDetailScreen = () => {
       </View>
 
       {/* Feedback Box */}
-      <View style={styles.feedbackBox}>
-        <View style={styles.feedbackHeader}>
-          {/* User Avatar */}
-          <Ionicons name="person-circle-outline" size={50} color="#555" />
-
-          {/* Star Rating  */}
-          <View style={styles.starContainer}>
-            {Array(5)
-              .fill(null)
-              .map((_, index) => (
+      {[...Array(3)].map((_, index) => (
+        <View key={index} style={styles.feedbackBox}>
+          <View style={styles.feedbackHeader}>
+            <Ionicons name="person-circle-outline" size={50} color="#555" />
+            <View style={styles.starContainer}>
+              {Array(5).fill(null).map((_, index) => (
                 <Ionicons key={index} name="star-outline" size={20} color="#FFD700" />
               ))}
+            </View>
+          </View>
+          <View style={styles.feedbackDisplay}>
+            <Text style={styles.feedbackText}>
+              "VF 8 mang đến trải nghiệm lái tuyệt vời, công nghệ hiện đại, xứng đáng là lựa chọn hàng đầu cho xe điện tại Việt Nam!"
+            </Text>
           </View>
         </View>
-
-        {/* Display Feedback */}
-        <View style={styles.feedbackDisplay}>
-          <Text style={styles.feedbackText}>
-            "VF 8 mang đến trải nghiệm lái tuyệt vời, công nghệ hiện đại, xứng đáng là lựa chọn hàng đầu cho xe điện tại Việt Nam!"
-          </Text>
-        </View>
-        
-      </View>
-      <View style={styles.feedbackBox}>
-        <View style={styles.feedbackHeader}>
-          {/* User Avatar */}
-          <Ionicons name="person-circle-outline" size={50} color="#555" />
-
-          {/* Star Rating */}
-          <View style={styles.starContainer}>
-            {Array(5)
-              .fill(null)
-              .map((_, index) => (
-                <Ionicons key={index} name="star-outline" size={20} color="#FFD700" />
-              ))}
-          </View>
-        </View>
-
-        {/* Display Feedback */}
-        <View style={styles.feedbackDisplay}>
-          <Text style={styles.feedbackText}>
-            "VF 8 mang đến trải nghiệm lái tuyệt vời, công nghệ hiện đại, xứng đáng là lựa chọn hàng đầu cho xe điện tại Việt Nam!"
-          </Text>
-        </View>
-        
-      </View>
-      <View style={styles.feedbackBox}>
-        <View style={styles.feedbackHeader}>
-          {/* User Avatar */}
-          <Ionicons name="person-circle-outline" size={50} color="#555" />
-
-          {/* Star Rating  */}
-          <View style={styles.starContainer}>
-            {Array(5)
-              .fill(null)
-              .map((_, index) => (
-                <Ionicons key={index} name="star-outline" size={20} color="#FFD700" />
-              ))}
-          </View>
-        </View>
-
-        {/* Display Feedback */}
-        <View style={styles.feedbackDisplay}>
-          <Text style={styles.feedbackText}>
-            "VF 8 mang đến trải nghiệm lái tuyệt vời, công nghệ hiện đại, xứng đáng là lựa chọn hàng đầu cho xe điện tại Việt Nam!"
-          </Text>
-        </View>
-        
-      </View>
+      ))}
     </View>
   );
 };
@@ -137,11 +91,27 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginBottom: 20,
   },
+  priceContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
   priceText: {
     fontSize: 22,
     fontWeight: "bold",
     color: "#333",
     marginBottom: 5,
+  },
+  rentButton: {
+    backgroundColor: "#5A9FE3",
+    paddingVertical: 8,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+  },
+  rentButtonText: {
+    fontSize: 16,
+    color: "#fff",
+    fontWeight: "bold",
   },
   detailText: {
     fontSize: 16,
@@ -158,7 +128,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 5,
     elevation: 3,
-
   },
   feedbackHeader: {
     alignItems: 'flex-start', 
