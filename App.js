@@ -18,7 +18,7 @@ export default function App() {
       {/* <ManageRental /> */}
 
       {/* Thai Bao :  */}
-      {/* <SearchScreen /> */}
+      <SearchScreen />
       {/* <SignUpScreen /> */}
       {/* <VehicleDetailScreen /> */}
 
