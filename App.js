@@ -31,12 +31,12 @@ export default function App() {
       {/* <RegisterOwner /> */}
 
       {/* Duc Hoan :  */}
-       <LoginPage />
+       {/* <LoginPage /> */}
        {/* <UpdateProfileScreen /> */}
 
       {/* Son Tung :  */}
       {/* <ManageAccountScreen />  */}
-      {/* <ManageVehicleScreen /> */}
+      <ManageVehicleScreen />
 
       <StatusBar style="auto" />
     </View>
